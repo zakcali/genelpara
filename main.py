@@ -10,10 +10,9 @@ response = session.get (API_URL, headers=HEADERS, verify=WHERE_CA)
 if response.status_code != 200:
     print ("Connection error:", response.status_code)
     exit ()
-apiDict=eval(response.content)
+apiDict=response.json()
 print ("USD-sell", apiDict ['USD']['satis'])
 print ("EUR-sell", apiDict ['EUR']['satis'])
 print ("XU100", apiDict ['XU100']['satis'])
 print ("BTC-sell", apiDict ['BTC']['satis'])
 print ("ETH-sell", apiDict ['ETH']['satis'])
-
