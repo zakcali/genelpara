@@ -19,7 +19,7 @@ while True:
     print("Current Time =", current_time)
     print ("USD-sell", apiDict ['USD']['satis'])
     print ("EUR-sell", apiDict ['EUR']['satis'])
-    print ("XU100", apiDict ['XU100']['satis'])
+    print ("XU100   ", apiDict ['XU100']['satis'])
     print ("BTC-sell", apiDict ['BTC']['satis'])
     print ("ETH-sell", apiDict ['ETH']['satis'])
     time.sleep (TIME_DELAY)
