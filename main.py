@@ -35,29 +35,29 @@ def get_response():
     return usd, eur, xu100, btc, eth
 
 
-last_usd, last_eur, last_xu100, last_btc, last_eth = get_response()
+lastUSD, lastEUR, lastXU100, lastBTC, lastETH = get_response()
 while True:
     USD, EUR, XU100, BTC, ETH = get_response()
 
-    dif_usd = (USD / last_usd - 1) * 100
-    dif_eur = (EUR / last_eur - 1) * 100
-    dif_xu100 = (XU100 / last_xu100 - 1) * 100
-    dif_btc = (BTC / last_btc - 1) * 100
-    dif_eth = (ETH / last_eth - 1) * 100
+    difUSD = (USD / lastUSD - 1) * 100
+    difEUR = (EUR / lastEUR - 1) * 100
+    difXU100 = (XU100 / lastXU100 - 1) * 100
+    difBTC = (BTC / lastBTC - 1) * 100
+    difETH = (ETH / lastETH - 1) * 100
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
 
     print("------Current Time =", current_time, "------")
-    print("USD-sell", USD, "difference % =", round(dif_usd, 2))
-    print("EUR-sell", EUR, "difference % =", round(dif_eur, 2))
-    print("XU100   ", XU100, "difference % =", round(dif_xu100, 2))
-    print("BTC-sell", BTC, "difference % =", round(dif_btc, 2))
-    print("ETH-sell", ETH, "difference % =", round(dif_eth, 2))
+    print("USD-sell", USD, "difference % =", round(difUSD, 2))
+    print("EUR-sell", EUR, "difference % =", round(difEUR, 2))
+    print("XU100   ", XU100, "difference % =", round(difXU100, 2))
+    print("BTC-sell", BTC, "difference % =", round(difBTC, 2))
+    print("ETH-sell", ETH, "difference % =", round(difETH, 2))
 
-    last_usd = USD
-    last_eur = EUR
-    last_xu100 = XU100
-    last_btc = BTC
-    last_eth = ETH
+    lastUSD = USD
+    lastEUR = EUR
+    lastXU100 = XU100
+    lastBTC = BTC
+    lastETH = ETH
 
     time.sleep(TIME_DELAY)
