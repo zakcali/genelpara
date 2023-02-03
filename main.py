@@ -35,11 +35,11 @@ while True:
     current_time = time.strftime("%H:%M:%S", t)
     
     print("------Current Time =", current_time,"------")
-    print ("USD-sell", usd, "difference % =", dif_usd)
-    print ("EUR-sell", eur, "difference % =", dif_eur)
-    print ("XU100   ", xu100, "difference % =", dif_xu100)    
-    print ("BTC-sell", btc, "difference % =", dif_btc)
-    print ("ETH-sell", eth, "difference % =", dif_eth)
+    print ("USD-sell", usd, "difference % =", round(dif_usd,2))
+    print ("EUR-sell", eur, "difference % =", round(dif_eur,2))
+    print ("XU100   ", xu100, "difference % =", round(dif_xu100,2))    
+    print ("BTC-sell", btc, "difference % =", round(dif_btc,2))
+    print ("ETH-sell", eth, "difference % =", round(dif_eth,2))
     
     last_usd=usd
     last_eur=eur
