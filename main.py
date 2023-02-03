@@ -68,11 +68,11 @@ while True:
         requests.get(telegram_url).json()
 
     print("------ Current Time =", current_time, "------")
-    print("USD-sell", USD, "% difference =", round(difUSD, 2))
-    print("EUR-sell", EUR, "% difference =", round(difEUR, 2))
-    print("XU100   ", XU100, "% difference =", round(difXU100, 2))
-    print("BTC-sell", BTC, "% difference =", round(difBTC, 2))
-    print("ETH-sell", ETH, "% difference =", round(difETH, 2))
+    print("USD-sell", USD, "% difference =", round(difUSD,2))
+    print("EUR-sell", EUR, "% difference =", round(difEUR,2))
+    print("XU100   ", XU100, "% difference =", round(difXU100,2))
+    print("BTC-sell", BTC, "% difference =", round(difBTC,2))
+    print("ETH-sell", ETH, "% difference =", round(difETH,2))
 
     lastUSD = USD
     lastEUR = EUR
