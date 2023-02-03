@@ -1,18 +1,23 @@
-# genelpara api V1.4, by Zafer Akçalı
+# genelpara api V1.5, by Zafer Akçalı
 import urllib.request
 import urllib.error
+import requests
 import certifi  # pip install certifi, to be sure to pass ssl verification in every URL
 import time
 import ssl
 import json
 from decimal import Decimal
 
+
+MY_TOKEN = 'enter your token here'
+CHAT_ID = 'enter your chat group id here, including minus sign'
 API_URL = 'https://api.genelpara.com/embed/borsa.json'
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/59.0.3071.115 Safari/537.36'}
-TIME_DELAY = 10 * 60
 CA_WHERE = certifi.where()
 SSL_CONTEXT = ssl.create_default_context(cafile=CA_WHERE)
+TIME_DELAY = 60
+SIGNIFICANT = 0.01
 
 
 def get_response():
@@ -46,6 +51,21 @@ while True:
     difETH = (ETH / lastETH - 1) * 100
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
+    if difUSD >= SIGNIFICANT:
+        telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=USD Alert: {round(difUSD,2)} {USD} {current_time}"
+        requests.get(telegram_url).json()
+    if difEUR >= SIGNIFICANT:
+        telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=EUR Alert: {round(difEUR,2)} {EUR} {current_time}"
+        requests.get(telegram_url).json()
+    if difXU100 >= SIGNIFICANT:
+        telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=XU100 Alert: {round(difXU100,2)} {XU100} {current_time}"
+        requests.get(telegram_url).json()
+    if difBTC >= SIGNIFICANT:
+        telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=BTC Alert: {round(difBTC,2)} {BTC} {current_time}"
+        requests.get(telegram_url).json()
+    if difETH >= SIGNIFICANT:
+        telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=ETH Alert: {round(difETH,2)} {ETH} {current_time}"
+        requests.get(telegram_url).json()
 
     print("------ Current Time =", current_time, "------")
     print("USD-sell", USD, "% difference =", round(difUSD, 2))
