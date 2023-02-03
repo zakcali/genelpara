@@ -17,7 +17,7 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/5
 CA_WHERE = certifi.where()
 SSL_CONTEXT = ssl.create_default_context(cafile=CA_WHERE)
 TIME_DELAY = 60
-SIGNIFICANT = 0.01
+SIGNIFICANT = 0.001
 
 
 def get_response():
@@ -51,19 +51,19 @@ while True:
     difETH = (ETH / lastETH - 1) * 100
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
-    if difUSD >= SIGNIFICANT:
+    if abs(difUSD) >= SIGNIFICANT:
         telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=USD Alert: {round(difUSD,2)} {USD} {current_time}"
         requests.get(telegram_url).json()
-    if difEUR >= SIGNIFICANT:
+    if abs(difEUR) >= SIGNIFICANT:
         telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=EUR Alert: {round(difEUR,2)} {EUR} {current_time}"
         requests.get(telegram_url).json()
-    if difXU100 >= SIGNIFICANT:
+    if abs(difXU100) >= SIGNIFICANT:
         telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=XU100 Alert: {round(difXU100,2)} {XU100} {current_time}"
         requests.get(telegram_url).json()
-    if difBTC >= SIGNIFICANT:
+    if abs(difBTC) >= SIGNIFICANT:
         telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=BTC Alert: {round(difBTC,2)} {BTC} {current_time}"
         requests.get(telegram_url).json()
-    if difETH >= SIGNIFICANT:
+    if abs(difETH) >= SIGNIFICANT:
         telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text=ETH Alert: {round(difETH,2)} {ETH} {current_time}"
         requests.get(telegram_url).json()
 
@@ -81,3 +81,4 @@ while True:
     lastETH = ETH
 
     time.sleep(TIME_DELAY)
+    
