@@ -20,10 +20,10 @@ def get_response():
         req = urllib.request.Request(API_URL, headers=HEADERS)
         resp = urllib.request.urlopen(req, context=SSL_CONTEXT)
     except urllib.error.HTTPError as e:
-        print("HTTPError:", e)
+        print("HTTPError:", e.reason)
         exit()
     except urllib.error.URLError as e:
-        print("URLError:", e)
+        print("URLError:", e.reason)
         exit()
     byte_code = resp.read().decode()
     api_dict = json.loads(byte_code)
@@ -47,7 +47,7 @@ while True:
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
 
-    print("------Current Time =", current_time, "------")
+    print("------ Current Time =", current_time, "------")
     print("USD-sell", USD, "% difference =", round(difUSD, 2))
     print("EUR-sell", EUR, "% difference =", round(difEUR, 2))
     print("XU100   ", XU100, "% difference =", round(difXU100, 2))
