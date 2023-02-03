@@ -6,6 +6,7 @@ import time
 API_URL = 'https://api.genelpara.com/embed/borsa.json'
 HEADERS={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'}
 WHERE_CA= certifi.where()
+TIME_DELAY = 60*60
 session = Session()
 while True:
     response = session.get (API_URL, headers=HEADERS, verify=WHERE_CA)
@@ -21,4 +22,4 @@ while True:
     print ("XU100", apiDict ['XU100']['satis'])
     print ("BTC-sell", apiDict ['BTC']['satis'])
     print ("ETH-sell", apiDict ['ETH']['satis'])
-    time.sleep (60*60)
+    time.sleep (TIME_DELAY)
