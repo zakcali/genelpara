@@ -51,18 +51,14 @@ while True:
     difETH = (ETH / lastETH - 1) * 100
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
-    
     currencies = ["USD  ", difUSD, USD, "EUR  ", difEUR, EUR, "XU100", difXU100, XU100, "BTC  ", difBTC, BTC, "ETH  ", difETH, ETH]
+    print("------ Current Time =", current_time, "------")
+    for i in range(0, len(currencies), 3):
+    	print (currencies[i],":", currencies[i+2], "% difference =", round(currencies[i+1], 2))
     for i in range(0, len(currencies), 3):
         if abs(currencies[i+1]) >= SIGNIFICANT:
             telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text= {currencies[i]} Alert: {round(currencies[i+1], 2)} {currencies[i+2]} {current_time}"
             requests.get(telegram_url).json()
-     
-
-    print("------ Current Time =", current_time, "------")
-    for i in range(0, len(currencies), 3):
-    	print (currencies[i],":", currencies[i+2], "% difference =", round(currencies[i+1], 2))
-
     lastUSD = USD
     lastEUR = EUR
     lastXU100 = XU100
