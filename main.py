@@ -11,13 +11,12 @@ from decimal import Decimal
 
 MY_TOKEN = 'enter your token here'
 CHAT_ID = 'enter your chat group id here, including minus sign'
-API_URL = 'https://api.genelpara.com/embed/borsa.json'
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/59.0.3071.115 Safari/537.36'}
 CA_WHERE = certifi.where()
 SSL_CONTEXT = ssl.create_default_context(cafile=CA_WHERE)
-TIME_DELAY = 10*60 # minuntes * seconds
-SIGNIFICANT = 0.001 # significant percentage 
+TIME_DELAY = 10 * 60  # minutes * seconds
+SIGNIFICANT = 0.1  # significant percentage
 
 
 def get_response():
@@ -51,13 +50,14 @@ while True:
     difETH = (ETH / lastETH - 1) * 100
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
-    currencies = ["USD  ", difUSD, USD, "EUR  ", difEUR, EUR, "XU100", difXU100, XU100, "BTC  ", difBTC, BTC, "ETH  ", difETH, ETH]
+    currencies = ["USD  ", difUSD, USD, "EUR  ", difEUR, EUR, "XU100", difXU100, XU100, "BTC  ", difBTC, BTC, "ETH  ",
+                  difETH, ETH]
     print("------ Current Time =", current_time, "------")
     for i in range(0, len(currencies), 3):
-    	print (currencies[i],":", currencies[i+2], "% difference =", round(currencies[i+1], 2))
+        print(currencies[i], ":", currencies[i + 2], "% difference =", round(currencies[i + 1], 2))
     for i in range(0, len(currencies), 3):
-        if abs(currencies[i+1]) >= SIGNIFICANT:
-            telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text= {currencies[i]} Alert: {round(currencies[i+1], 2)} {currencies[i+2]} {current_time}"
+        if abs(currencies[i + 1]) >= SIGNIFICANT:
+            telegram_url = f"https://api.telegram.org/bot{MY_TOKEN}/sendMessage?chat_id={CHAT_ID}&text= {currencies[i]} Alert: {round(currencies[i + 1], 2)} {currencies[i + 2]} {current_time}"
             requests.get(telegram_url).json()
     lastUSD = USD
     lastEUR = EUR
