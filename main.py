@@ -11,6 +11,7 @@ from decimal import Decimal
 
 MY_TOKEN = 'enter your token here'
 CHAT_ID = 'enter your chat group id here, including minus sign'
+API_URL = 'https://api.genelpara.com/embed/borsa.json'
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/59.0.3071.115 Safari/537.36'}
 CA_WHERE = certifi.where()
